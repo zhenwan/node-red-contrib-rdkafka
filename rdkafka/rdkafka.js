@@ -139,6 +139,15 @@ module.exports = function(RED) {
                     'batch.num.messages': 1000000,
                     'api.version.request': true  //added to force 0.10.x style timestamps on all messages
                 });
+            
+                producer.setPollInterval(100);
+
+                producer.on('delivery-report', function (err, report) {
+                    // Report of delivery statistics here:
+                    //
+                    //console.log(report);
+                });
+
 
                 // Connect to the broker manually
                 producer.connect();
